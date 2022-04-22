@@ -2,8 +2,9 @@
 echo "Welcome to Employee Wage Computation Problem\n";
 
 /**
- * UC-6
+ * UC-7
  * Employee wage Computation Program
+ * Refactored the Code to write a Class Method to Compute Employee Wage
  * Calculating Wages till a condition of total working hours or days is reached for a month
  */
 class EmployeeWage
@@ -11,9 +12,11 @@ class EmployeeWage
     public $WAGE_PER_HR = 20;
     public $FULL_TIME_WORKING_HRS = 8;
     public $PART_TIME_WORKING_HRS = 4;
-    public $IS_FULL_TIME = 2;
-    public $IS_PART_TIME = 1;
+
+    public $IS_FULL_TIME = 1;
+    public $IS_PART_TIME = 2;
     public $IS_ABSENT = 0;
+
     public $WORKING_DAYS_PER_MONTH = 20;
     public $WORKING_HOURS_PER_MONTH = 100;
 
@@ -31,12 +34,12 @@ class EmployeeWage
         $empCheck = rand(0, 2);
         switch ($empCheck) {
 
-            case $this->IS_FULL_TIME:
+            case 1:
                 echo "Full Time Employee\n";
                 return $this->FULL_TIME_WORKING_HRS;
                 break;
 
-            case $this->IS_PART_TIME:
+            case 2:
                 echo "Part Time Employee\n";
                 return $this->PART_TIME_WORKING_HRS;
                 break;
