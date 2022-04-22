@@ -2,9 +2,9 @@
 echo "Welcome to Employee Wage Computation Problem\n";
 
 /**
- * UC-3
- * Employee wage Computation Program
- * Added Part time Employee & Wage
+ * UC-4
+ * Employee wage Computation Program using switch case
+ * Solving using Switch Case Statement
  */
 class EmployeeWage
 {
@@ -16,25 +16,32 @@ class EmployeeWage
     public $IS_ABSENT = 0;
 
     /**
-     * Function to Check Employee is Present , Part-time or Absent
+     * Function to Check Employee is Present, part-time or Absent
      * Returns working hrs
      */
     function attendance()
     {
         $empCheck = rand(0, 2);
-         if ($empCheck == $this->IS_FULL_TIME) {
-            echo "Full Time Employee\n";
-            return $this->FULL_TIME_WORKING_HRS;
-        }else if ($empCheck == $this->IS_PART_TIME) {
-            echo "Part Time Employee\n";
-            return $this->PART_TIME_WORKING_HRS;
-        } else {
-            echo "Employee is Absent\n";
-            return $this->IS_ABSENT;
+        switch ($empCheck) {
+           
+            case 1:
+                echo "Full Time Employee\n";
+                return $this->FULL_TIME_WORKING_HRS;
+                break;
+            
+            case 2:
+                echo "Part Time Employee\n";
+                return $this->PART_TIME_WORKING_HRS;
+                break;
+    
+            default:
+                echo "Employee is Absent\n";
+                return 0;
+                break;
         }
     }
 
-      /**
+    /**
      * Function to Calculate Daily Wage
      * calculating the daily wage according to working hours
      */
