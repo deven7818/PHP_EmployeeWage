@@ -74,7 +74,7 @@ class EmployeeWage
     function monthlyWage()
     {
         while (
-            $this->totalWorkingHours <= $this->WORKING_HOURS_PER_MONTH &&
+            $this->totalWorkingHours < $this->WORKING_HOURS_PER_MONTH &&
             $this->totalWorkingDays < $this->WORKING_DAYS_PER_MONTH
         ) {
             $this->totalWorkingDays++;
