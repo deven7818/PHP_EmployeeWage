@@ -2,31 +2,39 @@
 echo "Welcome to Employee Wage Computation Problem\n";
 
 /**
- * UC-2
+ * UC-3
  * Employee wage Computation Program
- * Calculating daily employee wage
+ * Added Part time Employee & Wage
  */
 class EmployeeWage
 {
     public $WAGE_PER_HR = 20;
     public $FULL_TIME_WORKING_HRS = 8;
+    public $PART_TIME_WORKING_HRS = 4;
+    public $IS_FULL_TIME = 2;
+    public $IS_PART_TIME = 1;
+    public $IS_ABSENT = 0;
 
     /**
-     * function to check employee is present or not
-     * using rand() function to generate random number 0 or 1 for Attendance
+     * Function to Check Employee is Present , Part-time or Absent
+     * Returns working hrs
      */
     function attendance()
     {
-        $empCheck = rand(0, 1);
-        if ($empCheck == 1) {
-            echo "Employee is Present\n";
+        $empCheck = rand(0, 2);
+         if ($empCheck == $this->IS_FULL_TIME) {
+            echo "Full Time Employee\n";
             return $this->FULL_TIME_WORKING_HRS;
+        }else if ($empCheck == $this->IS_PART_TIME) {
+            echo "Part Time Employee\n";
+            return $this->PART_TIME_WORKING_HRS;
         } else {
             echo "Employee is Absent\n";
-            return 0;
+            return $this->IS_ABSENT;
         }
     }
-    /**
+
+      /**
      * Function to Calculate Daily Wage
      * calculating the daily wage according to working hours
      */
