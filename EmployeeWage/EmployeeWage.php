@@ -2,9 +2,9 @@
 echo "Welcome to Employee Wage Computation Problem\n";
 
 /**
- * UC-5
- * Employee wage Computation Program using switch case
- * Calculating Wages for a Month
+ * UC-6
+ * Employee wage Computation Program
+ * Calculating Wages till a condition of total working hours or days is reached for a month
  */
 class EmployeeWage
 {
@@ -15,8 +15,14 @@ class EmployeeWage
     public $IS_PART_TIME = 1;
     public $IS_ABSENT = 0;
     public $WORKING_DAYS_PER_MONTH = 20;
+    public $WORKING_HOURS_PER_MONTH = 100;
 
-    /**
+    public $workingHrs = 0;
+    public $monthlyWage = 0;
+    public $totalWorkingDays = 0;
+    public $totalWorkingHours = 0;
+
+     /**
      * Function to Check Employee is Present, part-time or Absent
      * Returns working hrs
      */
@@ -42,7 +48,7 @@ class EmployeeWage
         }
     }
 
-    /**
+   /**
      * Function to Calculate Daily Wage
      * calculating the daily wage according to working hours
      * returns daily wage of the employee
@@ -50,29 +56,36 @@ class EmployeeWage
     function dailyWage()
     {
         $totalHrs = $this->attendance();
+        $this->workingHrs = $totalHrs;
         $dailyWage = $this->WAGE_PER_HR * $totalHrs;
-        echo "Total Working Hours : " . $totalHrs . "\n";
-        echo "Daily Wage : " . $dailyWage . "\n\n";
+        echo "Working Hours : " . $totalHrs. "\n";
+        echo "Daily Wage : " . $dailyWage. "\n\n";
         return $dailyWage;
     }
 
-    /**
+   /**
      * Function to Calculate Monthly Wage
      * calculating monthly wage according to working hours
      * calling dailyWage() function to get daily wage
      */
     function monthlyWage()
     {
-        $monthlyWage = 0;
-        for ($i = 1; $i <= $this->WORKING_DAYS_PER_MONTH; $i++) {
-            echo "Day : " . $i . "\n";
+        while (
+            $this->totalWorkingHours <= $this->WORKING_HOURS_PER_MONTH &&
+            $this->totalWorkingDays < $this->WORKING_DAYS_PER_MONTH
+        ) {
+            $this->totalWorkingDays++;
+            echo "Day : " . $this->totalWorkingDays. "\n";
             $dailyWage = $this->dailyWage();
-            $monthlyWage += $dailyWage;
+            $this->monthlyWage += $dailyWage;
+            $this->totalWorkingHours += $this->workingHrs;
         }
-        echo "Total Monthly Wage : " . $monthlyWage . "\n\n";
+
+        echo "Total Working Days : " . $this->totalWorkingDays. "\n";
+        echo "Total Working Hours : " . $this->totalWorkingHours. "\n";
+        echo "Total Monthly Wage : " . $this->monthlyWage. "\n\n";
     }
 }
 //Creating object
 $empWage = new EmployeeWage();
 $empWage->monthlyWage();
-?>
