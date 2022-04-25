@@ -5,12 +5,14 @@ function welcome()
 {
     echo "Welcome to Employee Wage Computation Problem\n";
 }
+
 /**
- * UC-9
+ * UC-10
  * Employee wage Computation Program
  * Calculating Wages till a condition of total working hours or days is reached for a month
- * calculate Employee Wage for multiple companies
+ * calculate Employee Wage for multiple companies 
  * Using Instance Variable instead of function parameters
+ * Used array for company employee wage
  */
 class EmployeeWage
 {
@@ -47,15 +49,16 @@ class EmployeeWage
     {
         $empCheck = rand(0, 2);
         switch ($empCheck) {
-
             case 1:
                 echo "Full Time Employee\n";
                 return $this->FULL_TIME_WORKING_HRS;
                 break;
+
             case 2:
                 echo "Part Time Employee\n";
                 return $this->PART_TIME_WORKING_HRS;
                 break;
+
 
             default:
                 echo "Employee is Absent\n";
@@ -77,7 +80,6 @@ class EmployeeWage
         echo "Daily Wage : " . $dailyWage . "\n\n";
         return $dailyWage;
     }
-
     /**
      * Function to Calculate Monthly Wage
      * Printing the Monthly wage to the output
@@ -101,6 +103,7 @@ class EmployeeWage
         echo "Monthly Wage : " . $this->monthlyWage . "\n\n";
     }
 
+
     /**
      * Function for Taking User Input for company
      */
@@ -111,12 +114,15 @@ class EmployeeWage
         $this->monthlyWage();
     }
 }
+
 //calling welcome() function for display welcome message
 welcome();
 
 //Creating object of EmployeeWage class passing the arguments wagePerHrs, workingDaysPerMonth, workingHrsPerMonth
 $company1 = new EmployeeWage(25, 20, 100);
-$company1->userInput();
 $company2 = new EmployeeWage(25, 24, 80);
-$company2->userInput();
+$empWageArray = array($company1, $company2, $company3);
+foreach ($empWageArray as $company) {
+    $company->userInput();
+}
 ?>
