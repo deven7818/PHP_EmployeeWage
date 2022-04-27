@@ -10,7 +10,7 @@ function welcome()
 }
 
 /**
- * UC-11
+ * UC-13
  * Employee wage Computation Program
  * Calculating Wages till a condition of total working hours or days is reached for a month
  * calculate Employee Wage for multiple companies 
@@ -91,14 +91,16 @@ class EmployeeWage implements CalculateEmpWage
      */
     function monthlyWage()
     {
+        $i = 0;
         while (
             $this->totalWorkingHours < $this->WORKING_HOURS_PER_MONTH &&
             $this->totalWorkingDays < $this->WORKING_DAYS_PER_MONTH
         ) {
-            echo "Company Name : ".$this->COMPANY_NAME . "\n";
+          //  echo "Company Name : ".$this->COMPANY_NAME . "\n";
             $this->totalWorkingDays++;
             echo "Day : " . $this->totalWorkingDays . "\n";
-            $dailyWage = $this->dailyWage($this->WAGE_PER_HR);
+            $dailyWage = $this->dailyWage();
+            $this->dailyWageArray[$i] = $dailyWage;
             $this->monthlyWage += $dailyWage;
             $this->totalWorkingHours += $this->workingHrs;
         }
@@ -106,6 +108,17 @@ class EmployeeWage implements CalculateEmpWage
         echo "Total Working Days : " . $this->totalWorkingDays . "\n";
         echo "Total Working Hours : " . $this->totalWorkingHours . "\n";
         echo "Monthly Wage : " . $this->monthlyWage . "\n\n";
+
+        $this->showDailyWage($this->totalWorkingDays);
+        return $this->monthlyWage;
+    }
+
+    function showDailyWage($totalWorkingDays){
+        echo "Daily wage is : ";
+        for ($i = 0; $i < $totalWorkingDays; $i++) {
+            echo $this->dailyWageArray[$i] . " ";
+        }
+        echo "/n";
     }
 }
 
