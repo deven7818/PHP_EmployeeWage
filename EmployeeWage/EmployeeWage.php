@@ -17,16 +17,17 @@ function welcome()
  */
 class EmployeeWage implements CalculateEmpWage
 {
-    public $FULL_TIME_WORKING_HRS = 8;
-    public $PART_TIME_WORKING_HRS = 4;
-    public $IS_FULL_TIME = 1;
-    public $IS_PART_TIME = 2;
-    public $IS_ABSENT = 0;
+    const FULL_TIME_WORKING_HRS = 8;
+    const PART_TIME_WORKING_HRS = 4;
+    const IS_FULL_TIME = 1;
+    const IS_PART_TIME = 2;
+    const IS_ABSENT = 0;
 
     public $WAGE_PER_HR;
     public $WORKING_DAYS_PER_MONTH;
     public $WORKING_HOURS_PER_MONTH;
 
+    public $CompName;
     public $workingHrs = 0;
     public $monthlyWage = 0;
     public $totalWorkingDays = 0;
@@ -36,8 +37,9 @@ class EmployeeWage implements CalculateEmpWage
      * Parameterized contructor Function
      * Parameters are - $wage- wage per hr, $days-working days per month, $hours-working hrs per month
      */
-    public function __construct($wage, $days, $hours)
+    public function __construct($CompName,$wage, $days, $hours)
     {
+        $this->COMP_NAME = $CompName;
         $this->WAGE_PER_HR = $wage;
         $this->WORKING_DAYS_PER_MONTH = $days;
         $this->WORKING_HOURS_PER_MONTH = $hours;
@@ -52,12 +54,12 @@ class EmployeeWage implements CalculateEmpWage
         switch ($empCheck) {
             case 1:
                 echo "Full Time Employee\n";
-                return $this->FULL_TIME_WORKING_HRS;
+                return 8;
                 break;
 
             case 2:
                 echo "Part Time Employee\n";
-                return $this->PART_TIME_WORKING_HRS;
+                return 4;
                 break;
 
 
@@ -92,6 +94,7 @@ class EmployeeWage implements CalculateEmpWage
             $this->totalWorkingHours < $this->WORKING_HOURS_PER_MONTH &&
             $this->totalWorkingDays < $this->WORKING_DAYS_PER_MONTH
         ) {
+            echo "Company Name : ".$this->COMP_NAME . "\n";
             $this->totalWorkingDays++;
             echo "Day : " . $this->totalWorkingDays . "\n";
             $dailyWage = $this->dailyWage($this->WAGE_PER_HR);
@@ -110,8 +113,8 @@ class EmployeeWage implements CalculateEmpWage
      */
     function userInput()
     {
-        $companyName = readline('Enter Name of Company : ');
-        echo "Employee Wage Computation For $companyName \n";
+      //  $companyName = readline('Enter Name of Company : ');
+        //echo "Employee Wage Computation For $companyName \n";
         $this->monthlyWage();
     }
 }
@@ -120,9 +123,9 @@ class EmployeeWage implements CalculateEmpWage
 welcome();
 
 //Creating object of EmployeeWage class passing the arguments wagePerHrs, workingDaysPerMonth, workingHrsPerMonth
-$company1 = new EmployeeWage(25, 20, 100);
-$company2 = new EmployeeWage(25, 24, 80);
-$empWageArray = array($company1, $company2, $company3);
+$company1 = new EmployeeWage("Deven",25, 20, 100);
+$company2 = new EmployeeWage("Alumni",25, 24, 80);
+$empWageArray = array($company1, $company2);
 foreach ($empWageArray as $company) {
     $company->userInput();
 }
