@@ -1,5 +1,7 @@
 <?php
 
+include "EmpInterface.php";
+
 //function to display Welcome message
 function welcome()
 {
@@ -7,14 +9,13 @@ function welcome()
 }
 
 /**
- * UC-10
+ * UC-11
  * Employee wage Computation Program
  * Calculating Wages till a condition of total working hours or days is reached for a month
  * calculate Employee Wage for multiple companies 
- * Using Instance Variable instead of function parameters
- * Used array for company employee wage
+ * Using interface manage Employee Wage of multiple companies.
  */
-class EmployeeWage
+class EmployeeWage implements CalculateEmpWage
 {
     public $FULL_TIME_WORKING_HRS = 8;
     public $PART_TIME_WORKING_HRS = 4;
