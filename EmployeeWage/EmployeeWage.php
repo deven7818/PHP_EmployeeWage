@@ -15,6 +15,7 @@ function welcome()
  * Calculating Wages till a condition of total working hours or days is reached for a month
  * calculate Employee Wage for multiple companies 
  * Using interface manage Employee Wage of multiple companies.
+ * Store the Daily Wage along with the Total Wage
  */
 class EmployeeWage implements CalculateEmpWage
 {
